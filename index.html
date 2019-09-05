@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uploading with Multer</title>
+
+    <style>
+        input[type=file], select {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 5px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type=submit], select {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 5px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 20px;
+            background-color: #C06;
+        }
+
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+
+<div>
+
+    <!--  SINGLE FILE -->
+    <p>single file</p>
+    <form action="/upload_file" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myFile"/>
+        <input type="submit" value="Upload a file"/>
+    </form>
+
+
+    <hr>
+
+    <!-- MULTIPLE FILES -->
+    <p>multiple files</p>
+    <form action="/upload_multiple" enctype="multipart/form-data" method="POST">
+        <input type="file" name="myFiles" multiple>
+        <input type="submit" value="Upload your files"/>
+    </form>
+
+    <hr>
+
+    <!--   PHOTO-->
+    <p>photo</p>
+    <form action="/upload_photo" enctype="multipart/form-data" method="POST">
+        <input type="file" name="picture" accept="image/*"/>
+        <input type="submit" value="Upload an Image"/>
+    </form>
+
+
+</div>
+
+</body>
+</html>
+
+
+
