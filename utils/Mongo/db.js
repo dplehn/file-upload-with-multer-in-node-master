@@ -13,7 +13,7 @@ async function initDb() {
 
     _client = await MongoClient.connect(config.get('Customer.dbConfig').connectionString, config.get('Customer.dbConfig').connectionOptions);
     _db = _client.db("test");
-    myLogger.info("DB initialized");
+    //myLogger.info("DB initialized");
 
 
 }
