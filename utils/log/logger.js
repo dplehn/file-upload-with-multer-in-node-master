@@ -64,7 +64,6 @@ const logger = createLogger({
 
 module.exports = function (fileName) {
 
-
     return {
 
         error: function (text) {
