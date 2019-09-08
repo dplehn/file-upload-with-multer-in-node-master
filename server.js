@@ -81,7 +81,7 @@ app.post('/upload_photo', upload.single('picture'), (req, res) => {
     };
     _db.getDb().collection('mycollection').insertOne(finalImg, (err, result) => {
         myLogger.info(result.result.ok);
-;
+
         if (err) return myLogger.error(err);
 
         myLogger.info('saved to database');
