@@ -3,7 +3,6 @@
 const {createLogger, format, transports} = require('winston');
 const fs = require('fs');
 const path = require('path');
-const chalk = require('chalk');
 
 const env = process.env.NODE_ENV || 'development';
 const logDir = 'log';
@@ -25,18 +24,10 @@ const logger = createLogger({
     transports: [
         new transports.Console({
             format: format.combine(
+                format.colorize(),
                 format.printf(
-                    info => {
-                        if (info.level.includes("error")) {
-                            return (chalk.red(`${info.timestamp} ${info.level}  ${info.message}`));
-                        }
-                        if (info.level.includes("info")) {
-                            return (chalk.yellow(`${info.timestamp} ${info.level}  ${info.message}`));
-                        }
-                        if (info.level.includes("debug")) {
-                            return (chalk.blue(`${info.timestamp} ${info.level}  ${info.message}`));
-                        }
-                    }
+                    info =>
+                        (`${info.timestamp} ${info.level}  ${info.message}`)
                 )
             )
         }),
@@ -44,17 +35,8 @@ const logger = createLogger({
             filename,
             format: format.combine(
                 format.printf(
-                    info =>{
-                        if (info.level.includes("error")) {
-                            return (chalk.red(`${info.timestamp} ${info.level}  ${info.message}`));
-                        }
-                        if (info.level.includes("info")) {
-                            return (chalk.yellow(`${info.timestamp} ${info.level}  ${info.message}`));
-                        }
-                        if (info.level.includes("debug")) {
-                            return (chalk.blue(`${info.timestamp} ${info.level}  ${info.message}`));
-                        }
-                    }
+                    info =>
+                             (`${info.timestamp} ${info.level}  ${info.message}`)
                 )
             )
         })

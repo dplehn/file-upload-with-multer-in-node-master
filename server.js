@@ -5,7 +5,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const multer = require('multer');
-const prompt = require('prompt');
+
 fs = require('fs-extra');
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -26,15 +26,9 @@ let storage = multer.diskStorage({
 let upload = multer({storage: storage});
 
 _db.initDb().then(async function () {
-    prompt.start();
-    prompt.get(['username', 'email'], function (err, result) {
-        console.log('Command-line input received:');
-        console.log('  username: ' + result.username);
-        console.log('  email: ' + result.email);
-        app.listen(3000, () => {
-            myLogger.info('listening on 3000');
-        })
-    });
+    app.listen(3000, () => {
+        myLogger.info('listening on 3000');
+    })
 }).catch(function () {
     myLogger.error("Error in init db");
 });
@@ -54,7 +48,6 @@ app.post('/upload_file', upload.single('myFile'), (req, res, next) => {
 
     }
     res.send(file);
-
 });
 
 //Uploading multiple files
