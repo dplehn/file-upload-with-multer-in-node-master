@@ -25,14 +25,6 @@ let storage = multer.diskStorage({
 
 let upload = multer({storage: storage});
 
-_db.initDb().then(async function () {
-    app.listen(3000, () => {
-        myLogger.info('listening on 3000');
-    })
-}).catch(function () {
-    myLogger.error("Error in init db");
-});
-
 app.get('/', function (req, res) {
     res.sendFile(__dirname + '/index.html');
 });
@@ -104,5 +96,19 @@ app.get('/photo/:id', (req, res) => {
 
     });
 });
+
+async function connect() {
+    try {
+        await _db.initDb();
+        app.listen(3000, () => {
+            myLogger.info('listening on 3000');
+        });
+    }
+    catch(e) {
+        myLogger.error(e);
+    }
+}
+
+connect();
 
 
